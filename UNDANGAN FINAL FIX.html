@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Undangan Pernikahan - Said & Nisa | Muliadi & Asriani</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Poppins:wght@300;400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --gold: #c5a059;
+            --dark-maroon: #5d101d;
+            --light-bg: #fdfaf5;
+        }
+
+        * { box-sizing: border-box; }
+
+        body {
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--light-bg);
+            color: #333;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* --- Overlay Selamat Datang --- */
+        #overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: var(--dark-maroon);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: 0.8s ease;
+        }
+
+        .guest-box {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid rgba(255,255,255,0.3);
+            border-radius: 10px;
+            background: rgba(0,0,0,0.2);
+        }
+
+        #overlay button {
+            margin-top: 10px;
+            padding: 12px 40px;
+            background: var(--gold);
+            border: none;
+            color: white;
+            font-family: 'Poppins', sans-serif;
+            cursor: pointer;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        /* --- Header & Hero --- */
+        header {
+            padding: 100px 20px;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
+                        url('https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=1350&q=80'); 
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: white;
+        }
+
+        .script-font { font-family: 'Great Vibes', cursive; font-size: 3.5rem; color: var(--gold); margin: 10px 0; }
+        .serif-font { font-family: 'Playfair Display', serif; }
+
+        /* --- Countdown --- */
+        #countdown { display: flex; justify-content: center; gap: 10px; margin: 30px 0; flex-wrap: wrap; }
+        .countdown-item { background: rgba(255,255,255,0.2); padding: 10px; border-radius: 8px; min-width: 70px; border: 1px solid rgba(255,255,255,0.3); }
+        .countdown-item span { display: block; font-size: 1.5rem; font-weight: bold; color: var(--gold); }
+
+        /* --- Couple Section --- */
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+        .couple-section { display: flex; flex-wrap: wrap; justify-content: center; gap: 30px; margin-top: 50px; }
+        .couple-card { flex: 1; min-width: 300px; max-width: 450px; padding: 40px 20px; background: white; border-radius: 20px; box-shadow: 0 15px 35px rgba(0,0,0,0.07); border: 1px solid #f0eadd; }
+        .couple-img { width: 250px; height: 250px; border-radius: 50%; object-fit: cover; border: 6px solid var(--gold); margin-bottom: 25px; }
+
+        .invitation-text { margin-top: 40px; padding: 0 20px; line-height: 1.8; color: #555; }
+
+        /* --- Event Section --- */
+        .event-box { background-color: var(--dark-maroon); color: white; padding: 80px 20px; margin: 60px 0; }
+        .event-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 40px; }
+        .date-item { padding: 30px; border: 1px solid rgba(197, 160, 89, 0.4); border-radius: 15px; }
+        .date-item h3 { color: var(--gold); font-size: 1.8rem; }
+
+        /* --- Location Section (Gambar Saja) --- */
+        .location-section { padding: 60px 20px; background: white; }
+        .location-img-wrapper { 
+            max-width: 700px; margin: 20px auto; 
+            border-radius: 15px; overflow: hidden; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border: 5px solid #f9f9f9;
+        }
+        .location-img { width: 100%; height: auto; display: block; }
+        .btn-map {
+            display: inline-block;
+            margin-top: 25px;
+            padding: 12px 35px;
+            background: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.4);
+        }
+
+        /* --- Gift Section --- */
+        .gift-section { padding: 60px 20px; background: #f9f4eb; }
+        .bank-card { max-width: 400px; margin: 30px auto; padding: 30px; background: white; border-radius: 15px; border-top: 5px solid var(--gold); }
+        .bank-number { font-size: 1.5rem; font-weight: bold; letter-spacing: 2px; color: var(--dark-maroon); margin: 10px 0; }
+        .copy-btn { background: var(--gold); color: white; border: none; padding: 8px 20px; border-radius: 5px; cursor: pointer; }
+
+        /* --- Music Controller --- */
+        .music-control { position: fixed; bottom: 30px; right: 30px; z-index: 1000; background: var(--gold); width: 55px; height: 55px; border-radius: 50%; display: flex; justify-content: center; align-items: center; cursor: pointer; border: 2px solid white; }
+        .music-control svg { fill: white; width: 24px; }
+        .rotating { animation: spin 4s linear infinite; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+        .footer { padding: 60px 20px; background: #eee; font-size: 0.9rem; color: #777; }
+    </style>
+</head>
+<body>
+
+    <div id="overlay">
+        <h2 class="serif-font">Undangan Pernikahan</h2>
+        <h1 class="script-font">Said & Nisa | Muliadi & Asriani</h1>
+        <div class="guest-box">
+            <p style="margin:0; font-size: 0.9rem; opacity: 0.8;">Kepada Yth:</p>
+            <h3 id="guestName" style="margin: 5px 0;">Tamu Undangan</h3>
+        </div>
+        <button onclick="bukaUndangan()">Buka Undangan</button>
+    </div>
+
+    <audio id="weddingMusic" loop>
+        <source src="https://www.dropbox.com/scl/fi/4guocxedgsz7qnctdnbbo/ssstik.io_1775100954878.mp3?rlkey=1tq5nz0fcsc8e6brs7e0kgqo6&st=p3ga8w05&raw=1" type="audio/mpeg">
+    </audio>
+
+    <button id="musicButton" class="music-control" onclick="toggleMusic()">
+        <svg id="iconPlay" viewBox="0 0 24 24" style="display:none;"><path d="M8 5v14l11-7z"/></svg>
+        <svg id="iconPause" viewBox="0 0 24 24"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+    </button>
+
+    <header>
+        <p class="serif-font" style="letter-spacing: 3px; text-transform: uppercase;">The Wedding Of</p>
+        <h1 class="script-font">Said & Nisa</h1>
+        <h1 class="script-font" style="font-size: 2rem; color: white;">— & —</h1>
+        <h1 class="script-font">Muliadi & Asriani</h1>
+        
+        <div id="countdown">
+            <div class="countdown-item"><span id="days">00</span>Hari</div>
+            <div class="countdown-item"><span id="hours">00</span>Jam</div>
+            <div class="countdown-item"><span id="mins">00</span>Menit</div>
+            <div class="countdown-item"><span id="secs">00</span>Detik</div>
+        </div>
+        <p class="serif-font" style="margin-top: 20px;">Senin, 20 April 2026</p>
+    </header>
+
+    <div class="container">
+        <h2 class="serif-font" style="font-size: 2.5rem;">Pasangan Pengantin</h2>
+        <div class="couple-section">
+            <div class="couple-card">
+                <img src="https://www.dropbox.com/scl/fi/2hwfwi8nn2hsdjd16fjuc/IMG-20260401-WA0032.jpg?rlkey=d3pfix4d5hc0c6ube4fpr65m3&st=3mxmjzkt&raw=1" class="couple-img" alt="Said & Nisa">
+                <h3 class="serif-font">Muh Said & Nur Khaerunnisa</h3>
+                <p>Putra & Putri dari Keluarga Besar Bapak ABD RASYID & Ibu ATI (ALM)</p>
+            </div>
+            <div class="couple-card">
+                <img src="https://www.dropbox.com/scl/fi/m3jfe7mcbhieljdroh271/1000821157-2.jpg?rlkey=s68g83ge0pau4urlhr4rkwgrr&st=uiyyyq5e&raw=1" class="couple-img" alt="Muliadi & Asriani">
+                <h3 class="serif-font">Muliadi & Asriani</h3>
+                <p>Putra & Putri dari Keluarga Besar Bapak ABD RASYID & Ibu ATI (ALM)</p>
+            </div>
+        </div>
+
+        <div class="invitation-text">
+            <p>Merupakan suatu kehormatan dan kebahagiaan bagi kami, apabila Bapak/Ibu/Saudara(i) berkenan hadir memberikan do'a restu kepada putra kami.</p>
+            <p><b>Wassalamu'alaikum Warahmatullahi Wabarakatuh</b></p>
+            <div style="margin-top: 25px;">
+                <p style="margin-bottom: 5px;">Hormat kami yang mengundang :</p>
+                <h3 class="serif-font" style="color: var(--dark-maroon); font-size: 1.5rem;">Keluarga Besar ABD RASYID / ATI (ALM)</h3>
+            </div>
+        </div>
+    </div>
+
+    <div class="event-box">
+        <div class="container" style="padding: 0;">
+            <h2 class="serif-font" style="font-size: 2.5rem;">Rangkaian Acara</h2>
+            <div class="event-grid">
+                <div class="date-item">
+                    <h3 class="serif-font">Mappacci</h3>
+                    <p><strong>Sabtu, 11 Maret 2026</strong></p>
+                    <p>Pukul 19.00 WITA - Selesai</p>
+                </div>
+                <div class="date-item">
+                    <h3 class="serif-font">Resepsi Pesta</h3>
+                    <p><strong>Senin, 20 April 2026</strong></p>
+                    <p>Pukul 11.00 WITA - Selesai</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="location-section">
+        <h2 class="serif-font" style="font-size: 2.5rem;">Lokasi Acara</h2>
+        <p>📍 Alamat: Kediaman Mempelai Pria (Dekat SMKN 1 Maros)</p>
+        <div class="location-img-wrapper">
+            <img src="https://www.dropbox.com/scl/fi/eu6xq5fmeeinr7p5rabu1/WA_1775102105325.jpeg?rlkey=etv35cvzmrhwyn21cjbxzo0mz&st=927x8bzd&raw=1" class="location-img" alt="Peta Lokasi">
+        </div>
+        <a href="https://goo.gl/maps/yxNDfx4EyGxEHSkP7" target="_blank" class="btn-map">Klik Petunjuk Jalan (Google Maps)</a>
+    </div>
+
+    <div class="gift-section">
+        <h2 class="serif-font" style="font-size: 2.2rem;">Kado Digital</h2>
+        <div class="bank-card">
+            <h3 class="serif-font" style="color: #0060af; margin-bottom: 5px;">BANK BCA</h3>
+            <p>Atas Nama: <strong>MULYADI</strong></p>
+            <div class="bank-number" id="norek">7565019325</div>
+            <button class="copy-btn" onclick="copyNorek()">Salin Nomor Rekening</button>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>© 2026 Undangan Digital - Said & Nisa | Muliadi & Asriani</p>
+    </div>
+
+    <script>
+        // --- LOGIKA AMBIL NAMA TAMU DARI LINK ---
+        const urlParams = new URLSearchParams(window.location.search);
+        const guestName = urlParams.get('to');
+        if (guestName) {
+            document.getElementById('guestName').innerText = guestName;
+        }
+
+        const music = document.getElementById("weddingMusic");
+        const btn = document.getElementById("musicButton");
+        const iconPlay = document.getElementById("iconPlay");
+        const iconPause = document.getElementById("iconPause");
+
+        function bukaUndangan() {
+            document.getElementById("overlay").style.opacity = "0";
+            setTimeout(() => { document.getElementById("overlay").style.display = "none"; }, 800);
+            music.play();
+            btn.classList.add("rotating");
+        }
+
+        function toggleMusic() {
+            if (music.paused) {
+                music.play(); btn.classList.add("rotating");
+                iconPlay.style.display = "none"; iconPause.style.display = "block";
+            } else {
+                music.pause(); btn.classList.remove("rotating");
+                iconPlay.style.display = "block"; iconPause.style.display = "none";
+            }
+        }
+
+        function copyNorek() {
+            const norek = document.getElementById("norek").innerText;
+            navigator.clipboard.writeText(norek).then(() => { alert("Nomor rekening disalin!"); });
+        }
+
+        const targetDate = new Date(2026, 3, 20, 11, 0, 0).getTime();
+        const updateCountdown = () => {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+            if (diff > 0) {
+                document.getElementById("days").innerText = Math.floor(diff / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+                document.getElementById("hours").innerText = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+                document.getElementById("mins").innerText = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+                document.getElementById("secs").innerText = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+            } else {
+                document.getElementById("countdown").innerHTML = "<h3>Acara Sedang Berlangsung</h3>";
+            }
+        };
+        setInterval(updateCountdown, 1000);
+        updateCountdown();
+    </script>
+</body>
+</html>
